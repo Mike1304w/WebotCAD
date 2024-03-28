@@ -1,0 +1,499 @@
+#VRML_SIM R2023b utf8
+# license: Copyright Cyberbotics Ltd. Licensed for use only with Webots.
+# license url: https://cyberbotics.com/webots_assets_license
+# documentation url: https://webots.cloud/run?url=https://github.com/cyberbotics/webots/blob/released/projects/samples/tutorials/protos/FourWheelsRobot.proto
+# keywords: robot/wheeled
+
+PROTO ROBOTTO [
+
+]
+{
+  Robot {
+  rotation 0.02849305248520434 -0.9995939905498914 -4.076624466752131e-06 0.00010460215664673802
+  children [
+    DEF Main_Body Shape {
+      appearance PBRAppearance {
+        baseColor 0.1 0.3 0.5
+        roughness 0.2
+        metalness 0.9
+      }
+      geometry Box {
+        size 0.7 0.7 0.08
+      }
+    }
+    DEF wheel_R HingeJoint {
+      jointParameters HingeJointParameters {
+        position -5.532228098069403e-09
+        axis 0 0 1
+        anchor 0 0.375 0
+      }
+      device [
+        PositionSensor {
+          name "position sensor_R"
+        }
+        Brake {
+          name "brake_R"
+        }
+        RotationalMotor {
+        }
+      ]
+      endPoint Solid {
+        translation 1.6263073841586758e-09 0.37499999192992434 -0.03999730301112951
+        rotation 1 -1.738805982368648e-09 -1.6741596419314409e-09 1.5707999984114145
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 0
+              roughness 0.9
+            }
+            geometry Cylinder {
+              height 0.05
+              radius 0.075
+            }
+          }
+        ]
+        boundingObject USE wheel
+        physics DEF Wheel Physics {
+        }
+      }
+    }
+    DEF wheel_L HingeJoint {
+      jointParameters HingeJointParameters {
+        position 8.391760028853469e-09
+        axis 0 0 1
+        anchor 0 -0.375 0
+      }
+      device [
+        PositionSensor {
+          name "position sensor_L"
+        }
+        Brake {
+          name "brake_L"
+        }
+        RotationalMotor {
+        }
+      ]
+      endPoint Solid {
+        translation 2.128509613578212e-09 -0.37499999169680165 -0.03999649620481972
+        rotation 1 4.7634085762353034e-09 4.848994189739089e-09 1.5707996941933642
+        children [
+          USE wheel
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics USE Wheel
+      }
+    }
+    DEF omni_back_R BallJoint {
+      jointParameters BallJointParameters {
+        position 4.382518552817054e-08
+        anchor -0.25 -0.25 -0.065
+      }
+      jointParameters2 JointParameters {
+        position -2.0553624073123575e-07
+      }
+      jointParameters3 JointParameters {
+        position 1.5467417689257e-07
+        axis 0 1 0
+      }
+      endPoint Solid {
+        translation -0.25 -0.25 -0.064982
+        rotation -0.7876750534917749 0.5927567059104156 0.1679508788454604 2.615143176136055e-07
+        children [
+          DEF Omni_wheel Shape {
+            appearance PBRAppearance {
+            }
+            geometry Sphere {
+              radius 0.05
+            }
+          }
+        ]
+        name "solid(2)"
+        boundingObject USE Omni_wheel
+        physics DEF Omni_Wheel Physics {
+          density -1
+          mass 0.2
+        }
+      }
+    }
+    DEF omni_front_R BallJoint {
+      jointParameters BallJointParameters {
+        anchor 0.25 -0.25 -0.065
+      }
+      jointParameters2 JointParameters {
+        position -1.2427202656031407e-07
+      }
+      jointParameters3 JointParameters {
+        position 4.681979600349065e-08
+        axis 0 1 0
+      }
+      endPoint Solid {
+        translation 0.2500000072133546 -0.24999999417768407 -0.0649878174674753
+        rotation -0.9357889071334525 0.3525608050903819 -2.190672286715885e-08 1.2990531157078367e-07
+        children [
+          USE Omni_wheel
+        ]
+        name "solid(5)"
+        boundingObject USE Omni_wheel
+        physics USE Omni_Wheel
+      }
+    }
+    DEF omni_front_L BallJoint {
+      jointParameters BallJointParameters {
+        position 4.277885508859429e-08
+        anchor 0.25 0.25 -0.065
+      }
+      jointParameters2 JointParameters {
+        position -1.2427202656031407e-07
+      }
+      jointParameters3 JointParameters {
+        position 4.681979600349065e-08
+        axis 0 1 0
+      }
+      endPoint Solid {
+        translation 0.25 0.25 -0.0649878
+        rotation -0.8907151035393862 0.33557911539344026 0.3066158209202136 1.3657139822709086e-07
+        children [
+          USE Omni_wheel
+        ]
+        name "solid(3)"
+        boundingObject USE Omni_wheel
+        physics USE Omni_Wheel
+      }
+    }
+    DEF omni_back_L BallJoint {
+      jointParameters BallJointParameters {
+        anchor -0.25 0.25 -0.065
+      }
+      jointParameters2 JointParameters {
+        position -1.2427202656031407e-07
+      }
+      jointParameters3 JointParameters {
+        position 4.681979600349065e-08
+        axis 0 1 0
+      }
+      endPoint Solid {
+        translation -0.25 0.25 -0.065
+        rotation -0.9357889071334525 0.3525608050903819 -2.190672286715885e-08 1.2990531157078367e-07
+        children [
+          USE Omni_wheel
+        ]
+        name "solid(4)"
+        boundingObject USE Omni_wheel
+        physics USE Omni_Wheel
+      }
+    }
+    DEF Back Lidar {
+      translation -0.36 0 0.06
+      rotation 0 0 1 3.141592653589793
+      children [
+        DEF lidar_sensor Shape {
+          appearance PBRAppearance {
+            baseColor 0.38 0.38 0.38
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.04
+          }
+        }
+      ]
+      boundingObject USE lidar_sensor
+      physics DEF lidar Physics {
+        density -1
+        mass 0.04
+      }
+      fieldOfView 3.1415
+    }
+    DEF Front Lidar {
+      translation 0.36 0 0.06
+      children [
+        DEF lidar_sensor Shape {
+          appearance PBRAppearance {
+            baseColor 0.38 0.38 0.38
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.04
+          }
+        }
+      ]
+      name "lidar(4)"
+      boundingObject USE lidar_sensor
+      physics DEF lidar Physics {
+        density -1
+        mass 0.04
+      }
+      fieldOfView 3.1415
+    }
+    DEF Left Lidar {
+      translation 0 0.36 0.06
+      rotation 0 0 1 1.5707996938995747
+      children [
+        DEF lidar_sensor Shape {
+          appearance PBRAppearance {
+            baseColor 0.38 0.38 0.38
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.04
+          }
+        }
+      ]
+      name "lidar(1)"
+      boundingObject USE lidar_sensor
+      physics DEF lidar Physics {
+        density -1
+        mass 0.04
+      }
+      fieldOfView 3.1415
+    }
+    DEF Right Lidar {
+      translation 0 -0.36 0.06
+      rotation 0 0 1 -1.570795613280012
+      children [
+        DEF lidar_sensor Shape {
+          appearance PBRAppearance {
+            baseColor 0.38 0.38 0.38
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.08 0.04
+          }
+        }
+      ]
+      name "lidar(2)"
+      boundingObject USE lidar_sensor
+      physics DEF lidar Physics {
+        density -1
+        mass 0.04
+      }
+      fieldOfView 3.1415
+    }
+    DEF Front_Bumper TouchSensor {
+      translation 0.34999999753825206 0.3499999999298332 -0.040023543999858566
+      rotation 3.1050916014088035e-16 5.103106344313406e-16 -1 1.570799693902882
+      children [
+        Solid {
+          children [
+            DEF bumper Shape {
+              appearance PBRAppearance {
+                baseColor 0 0 0
+                roughness 0.5
+                metalness 0
+              }
+              geometry Mesh {
+                url [
+                  "https://raw.githubusercontent.com/Mike1304w/WebotCAD/main/bumper_shape.obj"
+                ]
+              }
+            }
+          ]
+          boundingObject USE bumper
+          physics DEF BUMPER Physics {
+            density -1
+            mass 0.15
+          }
+        }
+      ]
+      name "touch sensor(2)"
+      boundingObject USE bumper
+      physics USE BUMPER
+    }
+    DEF Rear_Bumper TouchSensor {
+      translation -0.35000000663956826 -0.35000000489131783 -0.04003060399441509
+      rotation 5.307942017867134e-12 -8.16358775837165e-12 1 1.5707996938962683
+      children [
+        Solid {
+          children [
+            DEF bumper Shape {
+              appearance PBRAppearance {
+                baseColor 0 0 0
+                roughness 0.5
+                metalness 0
+              }
+              geometry Mesh {
+                url [
+                  "../protos/bumper.stl"
+                ]
+              }
+            }
+          ]
+          boundingObject USE bumper
+          physics USE BUMPER
+        }
+      ]
+      name "touch sensor(1)"
+      boundingObject USE bumper
+      physics USE BUMPER
+    }
+    DEF Back_IR DistanceSensor {
+      translation -0.25 0 -0.05
+      rotation -1.8700037339856628e-06 0.9999999999965039 -1.8695779927988292e-06 1.5709012977116161
+      children [
+        DEF IR_Sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0.886 0.173
+            metalness 0
+            emissiveIntensity 0
+          }
+          geometry Box {
+            size 0.02 0.02 0.04
+          }
+        }
+      ]
+      type "infra-red"
+    }
+    DEF Front_IR DistanceSensor {
+      translation 0.25 0 -0.05
+      rotation -1.8700037339856628e-06 0.9999999999965039 -1.8695779927988292e-06 1.5709012977116161
+      children [
+        DEF IR_Sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0.886 0.173
+            metalness 0
+            emissiveIntensity 0
+          }
+          geometry Box {
+            size 0.02 0.02 0.04
+          }
+        }
+      ]
+      name "distance sensor(5)"
+      boundingObject USE IR_Sensor
+      physics DEF ir Physics {
+        density -1
+        mass 0.01
+      }
+      type "infra-red"
+    }
+    DEF Middle_IR DistanceSensor {
+      translation 0 0 -0.05
+      rotation -1.8700037339856628e-06 0.9999999999965039 -1.8695779927988292e-06 1.5709012977116161
+      children [
+        DEF IR_Sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0.886 0.173
+            metalness 0
+            emissiveIntensity 0
+          }
+          geometry Box {
+            size 0.02 0.02 0.04
+          }
+        }
+      ]
+      name "distance sensor(1)"
+      boundingObject USE IR_Sensor
+      physics DEF ir Physics {
+        density -1
+        mass 0.01
+      }
+      type "infra-red"
+    }
+    DEF L_IR DistanceSensor {
+      translation 0 0.25 -0.05
+      rotation 0 1 0 1.5707996938995747
+      children [
+        DEF IR_Sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0.886 0.173
+            metalness 0
+            emissiveIntensity 0
+          }
+          geometry Box {
+            size 0.02 0.02 0.04
+          }
+        }
+      ]
+      name "distance sensor(2)"
+      boundingObject USE IR_Sensor
+      physics DEF ir Physics {
+        density -1
+        mass 0.01
+      }
+      type "infra-red"
+    }
+    DEF R_IR DistanceSensor {
+      translation 0 -0.25 -0.05
+      rotation 0 1 0 1.5707996938995747
+      children [
+        DEF IR_Sensor Shape {
+          appearance PBRAppearance {
+            baseColor 1 0.886 0.173
+            metalness 0
+            emissiveIntensity 0
+          }
+          geometry Box {
+            size 0.02 0.02 0.04
+          }
+        }
+      ]
+      name "distance sensor(3)"
+      boundingObject USE IR_Sensor
+      physics DEF ir Physics {
+        density -1
+        mass 0.01
+      }
+      type "infra-red"
+    }
+    DEF X Accelerometer {
+      translation 0.25 0 0.045
+      rotation -0.035604053605703186 0.9993659746811535 4.053408921895866e-06 0.00010503798352290124
+      children [
+        DEF Accelerometer Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.02 0.01
+          }
+        }
+      ]
+    }
+    DEF Y Accelerometer {
+      translation 0 0.25 0.045
+      rotation 5.061581058515415e-05 5.435540555341519e-05 0.9999999972417648 1.5707996970835718
+      children [
+        DEF Accelerometer Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.08 0.02 0.01
+          }
+        }
+      ]
+      name "accelerometer(1)"
+    }
+    DEF Center GPS {
+      translation 0 0 0.065
+      rotation -0.035604053612088835 0.999365974680926 4.0534093182454805e-06 0.00010503798352286877
+      children [
+        DEF GPS_Sensor Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 1 0.9
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.05
+            radius 0.05
+          }
+        }
+      ]
+    }
+    DEF Right_Bottom GPS {
+      translation -0.199996 -0.2 0.065
+      rotation -0.035604053611116786 0.9993659746809608 4.053408204178073e-06 0.00010503798352276714
+      children [
+        USE GPS_Sensor
+      ]
+      name "gps(1)"
+    }
+  ]
+  boundingObject USE Main_Body
+  physics Physics {
+  }
+}
+}
+  
